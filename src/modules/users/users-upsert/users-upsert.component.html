@@ -1,0 +1,136 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{user ? 'Edit user' : 'Add user'}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalService.closeModal()"></button>
+</div>
+<div class="modal-body" [formGroup]="userForm">
+    <div class="row">
+        <div class="col-12 col-md-6 mb-2">
+            <small>Name*</small>
+            <input [formControlName]="'name'" type="text" class="form-control" placeholder="Enter User's name"
+                minlength="3" maxLength="100" required>
+            <small [ngClass]="{'invisible': !(userForm.controls['name'].errors && userForm.controls['name'].touched)}"
+                class="text-center text-danger d-block">
+                {{userForm.controls['name'].errors?.['required'] ? "Name field is required" : "Invalid name value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Father Name*</small>
+            <input [formControlName]="'father_name'" type="text" class="form-control"
+                placeholder="Enter User's Father Name">
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['father_name'].errors && userForm.controls['father_name'].touched)}"
+                class="text-center text-danger d-block">
+                {{userForm.controls['father_name'].errors?.['required'] ? "Father Name field is required" : "Invalid Father Name value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Grandfather Name*</small>
+            <input type="text" [formControlName]="'grandfather_name'" class="form-control"
+                placeholder="Enter User's Grandfather Name">
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['grandfather_name'].errors && userForm.controls['grandfather_name'].touched)}"
+                class="text-center text-danger d-block">
+                {{userForm.controls['grandfather_name'].errors?.['required'] ? "Grandfather Name field is required" : "Invalid Grandfather Name value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Family Branch Name*</small>
+            <input type="text" [formControlName]="'family_branch_name'" class="form-control"
+                placeholder="Enter User's Family Branch Name">
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['family_branch_name'].errors && userForm.controls['family_branch_name'].touched)}"
+                class="text-center text-danger d-block">
+                {{userForm.controls['family_branch_name'].errors?.['required'] ? "Family Branch Name field is required" : "Invalid Family Branch Name value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Gender*</small>
+                <select class="form-select" [formControlName]="'gender'" required>
+                    <option [ngValue]="null" disabled>Select user gender</option>
+                    <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+                </select>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Phone Number*</small>
+            <input type="number" [formControlName]="'phone'" class="form-control" placeholder="Enter User Phone Number" required>
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['phone'].errors && userForm.controls['phone'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Email*</small>
+            <input type="email" [formControlName]="'email'" class="form-control" placeholder="Enter user's email" required>
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['email'].errors && userForm.controls['email'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Password*</small>
+            <input type="password" [formControlName]="'password'" class="form-control" placeholder="Enter user's password">
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['password'].errors && userForm.controls['password'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Password Confirmation*</small>
+            <input type="password" [formControlName]="'password_confirmation'" class="form-control" placeholder="Confirm Password">
+            <small [ngClass]="{'invisible': !((userForm.controls['password_confirmation'].errors || userForm.errors) && userForm.controls['password_confirmation'].touched)}" class="text-center text-danger d-block">
+                {{userForm.controls['password_confirmation'].errors ? "Confirm password field is required" : "This field must match the password"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Date of Birth*</small>
+            <input type="date" [formControlName]="'date_of_birth'" class="form-control">
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['date_of_birth'].errors && userForm.controls['date_of_birth'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small
+                [ngClass]="{'invisible': !(userForm.controls['country_id'].errors && userForm.controls['country_id'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Phone Code*</small>
+            <input type="tel" [formControlName]="'phone_code'" class="form-control" placeholder="Enter phone code" required>
+            <small [ngClass]="{'invisible': !(userForm.controls['phone_code'].errors && userForm.controls['phone_code'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Country Code*</small>
+            <input type="tel" [formControlName]="'country_code'" class="form-control" placeholder="Enter country code" required>
+            <small [ngClass]="{'invisible': !(userForm.controls['country_code'].errors && userForm.controls['country_code'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <small>Tribe*</small>
+            <input type="tel" [formControlName]="'tribe'" class="form-control" placeholder="Enter tribe" required>
+            <small [ngClass]="{'invisible': !(userForm.controls['tribe'].errors && userForm.controls['tribe'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <input type="checkbox" [formControlName]="'active'" class="align-middle"> Active
+            <small [ngClass]="{'invisible': !(userForm.controls['active'].errors && userForm.controls['active'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <input type="checkbox" [formControlName]="'is_premium'" class="align-middle"> Is Premium
+            <small [ngClass]="{'invisible': !(userForm.controls['is_premium'].errors && userForm.controls['is_premium'].touched)}"
+                class="text-center text-danger d-block">
+            </small>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalService.closeModal()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!userForm.valid">Submit</button>
+</div>

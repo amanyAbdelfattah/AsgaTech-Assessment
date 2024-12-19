@@ -1,0 +1,15 @@
+<app-data-grid
+*ngIf = "displayedOrders"
+[title]="'orders'"
+[titleIconClass]="'fa-users'"
+[gridCols] = "gridCols"
+[gridData] = "{data: displayedOrders, totalCount: orders.length}"
+(actionClicked) = "onActionClicked($event)"
+(pageChanged) = "onPageChanged($event)"
+(pageSizeChanged) = "onPageSizeChanged($event)"
+[withFiltration] = false
+[withPagination] = true
+[canView]= true
+[currentPageSize] = "pageSize"
+>
+</app-data-grid>

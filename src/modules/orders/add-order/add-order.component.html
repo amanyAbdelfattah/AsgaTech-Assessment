@@ -1,0 +1,89 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Product</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalService.closeModal()"></button>
+</div>
+<div class="modal-body" [formGroup]="addOrderForm">
+    <h5>Customer information</h5>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <small>Name*</small>
+            <input formControlName="name" type="text" class="form-control" placeholder="Enter customer's name" required>
+            <small [ngClass]="{'invisible': !(addOrderForm.controls['name'].errors && addOrderForm.controls['name'].touched)}"
+                class="text-center text-danger d-block">
+                {{addOrderForm.controls['name'].errors?.['required'] ? "Name field is required" : "Invalid name value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6">
+            <small>Email*</small>
+            <input formControlName="email" type="email" class="form-control" placeholder="Enter customer's email" required>
+            <small [ngClass]="{'invisible': !(addOrderForm.controls['email'].errors && addOrderForm.controls['email'].touched)}"
+                class="text-center text-danger d-block">
+                {{addOrderForm.controls['email'].errors?.['required'] ? "Email field is required" : "Invalid email value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6">
+            <small>Phone*</small>
+            <input formControlName="phone" type="tel" class="form-control" placeholder="Enter customer's phone" required>
+            <small [ngClass]="{'invisible': !(addOrderForm.controls['phone'].errors && addOrderForm.controls['phone'].touched)}"
+                class="text-center text-danger d-block">
+                {{addOrderForm.controls['phone'].errors?.['required'] ? "Phone field is required" : "Invalid phone value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6">
+            <small>Address*</small>
+            <textarea formControlName="address" cols="3" rows="3" class="form-control" placeholder="Enter customer's address" required></textarea>
+            <small [ngClass]="{'invisible': !(addOrderForm.controls['address'].errors && addOrderForm.controls['address'].touched)}"
+                class="text-center text-danger d-block">
+                {{addOrderForm.controls['address'].errors?.['required'] ? "Address field is required" : "Invalid address value"}}
+            </small>
+        </div>
+    </div>
+    
+    <hr>
+    <h5>Order information</h5>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <small>Payment method*</small>
+            <select class="form-select w-50" formControlName="paymentMethod" required>
+                <option [value]="null" disabled>Select payment method</option>
+                <ng-container *ngFor="let paymentMethod of paymentMethods | keyvalue">
+                    <option [ngValue]="paymentMethod.value">{{ paymentMethod.value }}</option>
+                </ng-container>
+            </select>
+            <small [ngClass]="{'invisible': !(addOrderForm.controls['paymentMethod'].errors && addOrderForm.controls['paymentMethod'].touched)}"
+                class="text-center text-danger d-block">
+                {{addOrderForm.controls['paymentMethod'].errors?.['required'] ? "Payment method is required" : ""}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6">
+            <small>Order items</small>
+            <ng-container formArrayName="orderItems">
+                <ng-container *ngFor="let orderItem of orderItems.controls; let i = index" [formGroupName]="i">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img [src]="productsService.GetProductImage(orderItem.get('ProductImg')!.value)" class="img-fluid rounded-start h-100" alt="ProductImg">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="col-4">{{orderItem.get('ProductName')!.value}}</p>
+                                        <p class="me-2 col-3">x
+                                            <input type="number" min="1" [max]="orderItem.get('AvailablePieces')!.value" class="d-inline form-control w-75" formControlName="Quantity"/>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>{{orderItem.get('ProductPrice')!.value}} $</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalService.closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!addOrderForm.valid">Submit</button>
+    </div>

@@ -1,0 +1,50 @@
+<div class="mt-3">
+    <div class="d-flex justify-content-between">
+        <div class="h2 mb-0 lockups-header-main">
+            <i *ngIf="titleIconClass" [ngClass]="titleIconClass" class="fa" aria-hidden="true"></i> {{title}}
+            <span class="h6 text-primary" *ngIf="getSelectedRows().length"> {{getSelectedRows().length}}/{{gridData.data.length}}</span>
+        </div>
+        <div>
+            <button *ngFor="let gridCustomButton of gridCustomButtons" class="btn px-3 me-2" (click)="onActionClicked({action: gridCustomButton.action})" [title]="gridCustomButton.title" [ngClass]="gridCustomButton.btnClass ? gridCustomButton.btnClass : 'btn-secondary'">
+                <ng-container *ngIf="gridCustomButton.text">
+                    {{gridCustomButton.text}}
+                </ng-container>
+                <i *ngIf="gridCustomButton.iconClass" [ngClass]="gridCustomButton.iconClass" class="fa" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="my-2 overflow-hidden" [@collapse]="filtrationCollapsed">
+        <div class="container-fluid">
+            <div class="row my-2 py-2 bg-white border rounded align-items-baseline">
+                <ng-content select="[filtration]">
+                </ng-content>
+            </div>
+        </div>
+    </div>
+    <ag-grid-angular class="ag-theme-alpine" 
+        [rowData]="gridData.data"
+        [columnDefs]="colDefs"
+        [defaultColDef]="defaultColDef"
+        [animateRows]="true"
+        [pagination]="withPagination"
+        [paginationPageSize]="currentPageSize"
+        [components]="components"
+        [domLayout]="'autoHeight'"
+        [rowSelection]="withSelection ? 'multiple' : undefined"
+        (rowClicked)="onActionClicked({action: 'View', data: $event.data})"
+        (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+    <div *ngIf="withPagination" class="d-flex justify-content-end mt-2">
+        <div class="me-2">
+            <select class="form-select" [ngModel]="currentPageSize" (change)="onPageSizeChange($event)">
+                <option [value]="pageSize" *ngFor="let pageSize of pageSizes">{{pageSize}}</option>
+            </select>
+        </div>
+    <ngb-pagination
+        [(page)]="currentPage"
+        [pageSize]="currentPageSize"
+        [collectionSize]="gridData.totalCount"
+        (pageChange)="onPageChange($event)"
+        [maxSize]="3"
+    ></ngb-pagination>
+    </div>

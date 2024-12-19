@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Product</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalService.closeModal()"></button>
+</div>
+<div class="modal-body" [formGroup]="productForm">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <small>Name*</small>
+            <input [formControlName]="'name'" type="text" class="form-control" placeholder="Enter product's name" required>
+            <small [ngClass]="{'invisible': !(productForm.controls['name'].errors && productForm.controls['name'].touched)}"
+                class="text-center text-danger d-block">
+                {{productForm.controls['name'].errors?.['required'] ? "Name field is required" : "Invalid name value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6">
+            <small>Price*</small>
+            <input [formControlName]="'price'" type="number" min="1" class="form-control" placeholder="Enter product's price" required>
+            <small [ngClass]="{'invisible': !(productForm.controls['price'].errors && productForm.controls['price'].touched)}"
+                class="text-center text-danger d-block">
+                {{productForm.controls['price'].errors?.['required'] ? "Price field is required" : "Invalid price value"}}
+            </small>
+        </div>
+        <div class="col-12 col-md-6">
+            <small>Quantity*</small>
+            <input [formControlName]="'quantity'" type="number" min="10" class="form-control" placeholder="Enter product's quantity" required>
+            <small [ngClass]="{'invisible': !(productForm.controls['quantity'].errors && productForm.controls['quantity'].touched)}"
+                class="text-center text-danger d-block">
+                {{productForm.controls['quantity'].errors?.['required'] ? "Quantity field is required" : "Invalid quantity value"}}
+            </small>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalService.closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" >Submit</button> <!--[disabled]="!productForm.valid"-->
+    </div>

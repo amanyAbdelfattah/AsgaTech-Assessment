@@ -1,0 +1,80 @@
+.my-overlay {
+    left: 0;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+    background-color: #212529;
+    text-align: center;
+    padding: 2% 0;
+
+    &.h-0 {
+        height: 0;
+        padding: 0;
+    }
+
+    i.fa.fa-spinner.fa-spin {
+        font-size: 80px;
+    }
+}
+
+.waviy {
+    position: relative;
+}
+
+.waviy span {
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    animation: flip 4s infinite;
+    animation-delay: calc(.189s * var(--i));
+    transition: all .5s ease-in-out;
+}
+
+@keyframes flip {
+
+    0%,
+    25% {
+        transform: rotateY(360deg);
+        color: #C8AD90;
+        transition: all .12s ease-in-out;
+    }
+}
+
+img {
+    line-height: 1;
+    padding: 0;
+    animation: heart-pulse 0.8s ease-out alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes heart-pulse {
+    0% {
+        transform: scale(0.75, 0.75);
+    }
+
+    30% {
+        transform: scale(1, 1);
+    }
+}
+
+.letter-spacing {
+    letter-spacing: 10px;
+}
+
+.loader-msg-mb {
+    margin-bottom: 6.5rem !important;
+}
+
+span.h2 {
+    font-size: 4rem !important;
+}
+
+.loader-mt {
+    margin-top: 10rem;
+}

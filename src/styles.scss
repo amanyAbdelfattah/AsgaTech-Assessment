@@ -1,0 +1,166 @@
+.full-height {
+    min-height: calc(100vh - 56px);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.outline-none {
+    outline: none;
+}
+
+.table-scroll {
+    overflow-x: auto;
+
+    table {
+        min-width: 750px;
+    }
+}
+
+.bg-main {
+    background-color: var(--bs-gray-200);
+}
+
+.w-90 {
+    width: 90%;
+}
+
+option:disabled {
+    color: var(--bs-gray-500);
+}
+
+.logo-color {
+    color: #C8AD90
+}
+
+.text-header-main {
+    color: #1b00ff;
+}
+
+.lockups-header-main {
+    color: #4a4a4a;
+}
+
+.text-orange {
+    color: var(--bs-orange) !important;
+}
+
+.time-input {
+    border: none;
+    font-size: 14px;
+
+    &::-webkit-datetime-edit-fields-wrapper {
+        display: flex;
+    }
+
+    &::-webkit-datetime-edit-text {
+        padding: 12px 4px;
+    }
+
+    &::-webkit-datetime-edit-hour-field {
+        background-color: var(--bs-gray-200);
+        border-radius: 15%;
+        padding: 12px 22px;
+
+        &:focus {
+            color: var(--bs-black);
+        }
+    }
+
+    &::-webkit-datetime-edit-minute-field {
+        background-color: var(--bs-gray-200);
+        border-radius: 15%;
+        padding: 12px 22px;
+
+        &:focus {
+            color: var(--bs-black);
+        }
+    }
+
+    &::-webkit-datetime-edit-ampm-field {
+        background-color: var(--bs-secondary);
+        border-radius: 15%;
+        color: var(--bs-white);
+        padding: 12px 22px;
+    }
+
+    &::-webkit-clear-button {
+        display: none;
+    }
+
+    &::-webkit-inner-spin-button {
+        display: none;
+    }
+}
+
+input.set-delivery::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer !important;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+::-webkit-scrollbar-thumb,
+*:hover::-webkit-scrollbar-thumb {
+    background-color: var(--bs-gray-700);
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 4px;
+    transition: all .5s ease-in-out;
+}
+
+.loader-overlay {
+    background-color: #212529 !important;
+}
+
+.loader-spinner,
+.abbreviation {
+    color: #fff !important;
+}
+
+.login-overlay {
+    background: rgb(0 0 0 / 60%);
+}
+
+.login-header {
+    color: var(--bs-gray-700);
+}
+
+.login-bg {
+    background-color: #ffffff1a;
+}
+
+.sidebar,
+.top-navbar,
+.footer {
+    background-color: var(--bs-dark) !important;
+}
+
+li:not(.top-navbar-dropdown),
+li button:not(.top-navbar-dropdown),
+a.nav-link,
+a.nav-link:hover,
+.nav-link:focus,
+.horizontal-line {
+    color: #fff;
+}
+
+.footer p {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+}

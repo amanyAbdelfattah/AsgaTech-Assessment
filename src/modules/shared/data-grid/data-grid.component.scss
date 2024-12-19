@@ -1,0 +1,10 @@
+.ag-theme-alpine {
+    overflow: scroll;
+    ::ng-deep .ag-root-wrapper {
+        min-width: 1000px;
+    }
+}
+
+::ng-deep .ag-paging-panel.ag-unselectable{
+    display: none;
+}

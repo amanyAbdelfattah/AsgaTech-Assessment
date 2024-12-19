@@ -1,0 +1,95 @@
+<div class="container my-3">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-6 d-flex flex-column justify-content-between">
+            <div class="border rounded">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-start text-black">
+                        <div class="ms-2">
+                            <div class="fw-bold">Ordered by</div>
+                            {{userDetails.Name}}
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start text-black">
+                        <div class="ms-2">
+                            <div class="fw-bold">Phone</div>
+                            {{userDetails.Phone}}
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start text-black">
+                        <div class="ms-2">
+                            <div class="fw-bold">Email</div>
+                            {{userDetails.Email}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6 d-flex flex-column justify-content-between">
+            <div class="border rounded">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-start text-black">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Payment method</div>
+                            <span class="text-capitalize">{{orderDetails.PaymentType}}</span>
+                        </div>
+                        <span class="badge rounded-pill fs-6 bg-primary">
+                            <i class="fa"
+                                [ngClass]="orderDetails.PaymentType === PaymentMethod.Cash ? 'fa-money' : 'fa-cc-visa'">
+                            </i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start text-black">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Ordered at</div>
+                            <span class="text-capitalize">{{orderDetails.OrderDate}}</span>
+                        </div>
+                        <span class="badge rounded-pill fs-6 bg-secondary">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start text-black">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Total order amount</div>
+                            <span class="text-capitalize">{{onCalculateOrderTotalAmount().toLocaleString()}} $</span>
+                        </div>
+                        <span class="badge rounded-pill fs-6 bg-success">
+                            <i class="fa fa-usd"></i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card my-4 p-2">
+        <h4 class="modal-title" id="modal-basic-title">Order {{orderDetails.OrderId}} details</h4>
+        <div class="d-flex justify-content-between align-items-center">
+            <h6>Order Items</h6>
+            <p>Items Count: <span class="badge rounded-pill fs-6 bg-primary">{{orderDetails.Products.length}}</span>
+            </p>
+        </div>
+        <div class="row justify-content-between align-items-center flex-wrap mx-2 h-100">
+            <ng-container *ngFor="let orderProduct of orderDetails.Products; let i = index">
+                <div class="col-3">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img [src]="productsService.GetProductImage(productDetails[i].ProductImg)" class="img-fluid rounded-start h-100" alt="ProductImg">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>{{productDetails[i].ProductName}}</p>
+                                        <p class="me-2">x{{orderProduct.Quantity}}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>{{productDetails[i].ProductPrice}} $</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
