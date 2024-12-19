@@ -18,7 +18,8 @@ To set up the application locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Amany821/AsgaTech-Assessment.git
+   
+   git clone https://github.com/amanyAbdelfattah/AsgaTech-Assessment.git
 
 2. Navigate to the project directory:
    ```bash
